@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criptografia</title>
+</head>
+<body>
+
+    <form>
+        <label for="mensagemAberta">Mensagem Aberta:</label>
+        <input type="text" id="mensagemAberta"><br>
+
+        <label for="mensagemCriptografada">Mensagem Criptografada:</label>
+        <input type="text" id="mensagemCriptografada"><br>
+
+        <button type="button" onclick="criptografar()">Criptografar</button>
+        <button type="button" onclick="descriptografar()">Descriptografar</button>
+    </form>
+
+    <script>
+    
+        function criptografar() {
+            var mensagemAberta = document.getElementById("mensagemAberta").value;
+            var deslocamento = 3;
+            var mensagemCriptografada = "";
+
+            for (var i = 0; i < mensagemAberta.length; i++) {
+                var char = mensagemAberta[i];
+                var codigo = mensagemAberta.charCodeAt(i);
+                char = String.fromCharCode(codigo + deslocamento);
+                mensagemCriptografada += char;
+            }
+
+            document.getElementById("mensagemCriptografada").value = mensagemCriptografada;
+        }
+
+
+        function descriptografar() {
+            var mensagemCriptografada = document.getElementById("mensagemCriptografada").value;
+            var deslocamento = 3;
+            var mensagemAberta = "";
+
+            for (var i = 0; i < mensagemCriptografada.length; i++) {
+                var char = mensagemCriptografada[i];
+                var codigo = mensagemCriptografada.charCodeAt(i);
+                char = String.fromCharCode(codigo - deslocamento);
+                mensagemAberta += char;
+            }
+
+            document.getElementById("mensagemAberta").value = mensagemAberta;
+        }
+    </script>
+</body>
+</html>
